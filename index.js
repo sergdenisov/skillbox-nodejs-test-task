@@ -7,8 +7,12 @@ const originalFilePath = process.argv[2];
 
 const fetchFile = async (url, isHashFile = false) => {
   const response = await fetch(url);
-  const body = await response[isHashFile ? 'text' : 'buffer']();
-  return body;
+
+  if (!response.ok) {
+    return Promise.reject();
+  }
+
+  return response[isHashFile ? 'text' : 'buffer']();
 };
 
 const isURL = validUrl.isUri(originalFilePath);
@@ -22,9 +26,7 @@ const messages = {
 
 const getFile = async (filePath, errorCode, isHashFile = false) => {
   try {
-    const body = isURL
-      ? await fetchFile(filePath, isHashFile)
-      : fs.readFileSync(filePath, isHashFile ? 'utf-8' : null);
+    const body = isURL ? await fetchFile(filePath, isHashFile) : fs.readFileSync(filePath, isHashFile ? 'utf-8' : null);
 
     return isHashFile ? body.trim() : body;
   } catch (ignore) {
@@ -36,14 +38,9 @@ const getFile = async (filePath, errorCode, isHashFile = false) => {
 
 const checkFiles = async () => {
   try {
-    const [originalFileBody, hashFileBody] = await Promise.all([
-      getFile(originalFilePath, 100),
-      getFile(`${originalFilePath}.sha256`, 101, true),
-    ]);
-    const originalFileHash = crypto
-      .createHash('sha256')
-      .update(originalFileBody)
-      .digest('hex');
+    const originalFileBody = await getFile(originalFilePath, 100);
+    const hashFileBody = await getFile(`${originalFilePath}.sha256`, 101, true);
+    const originalFileHash = crypto.createHash('sha256').update(originalFileBody).digest('hex');
 
     if (originalFileHash !== hashFileBody) {
       console.log(messages[102]);

@@ -1,7 +1,7 @@
 {
-  "env": { "commonjs": true, "es6": true, "node": true },
-  "extends": ["prettier", "airbnb-base"],
+  "env": { "commonjs": true, "es6": true, "node": true, "jest/globals": true },
+  "extends": ["prettier", "airbnb-base", "plugin:jest/all"],
   "parserOptions": { "ecmaVersion": 2018 },
   "rules": { "prettier/prettier": "error", "no-console": "off", "no-empty": ["error", { "allowEmptyCatch": true }]},
-  "plugins": ["prettier"]
+  "plugins": ["prettier", "jest"]
 }
