@@ -2,6 +2,6 @@
   "env": { "commonjs": true, "es6": true, "node": true },
   "extends": ["prettier", "airbnb-base"],
   "parserOptions": { "ecmaVersion": 2018 },
-  "rules": { "prettier/prettier": "error", "no-console": "off" },
+  "rules": { "prettier/prettier": "error", "no-console": "off", "no-empty": ["error", { "allowEmptyCatch": true }]},
   "plugins": ["prettier"]
 }

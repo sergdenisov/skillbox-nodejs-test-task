@@ -14,6 +14,8 @@
   "license": "ISC",
   "homepage": "https://github.com/sergdenisov/skillbox-nodejs-test-task#readme",
   "dependencies": {
+    "istextorbinary": "^5.12.0",
+    "node-fetch": "^2.6.1",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
