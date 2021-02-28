@@ -1,0 +1,24 @@
+{
+  "name": "skillbox-nodejs-test-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergdenisov/skillbox-nodejs-test-task.git"
+  },
+  "author": "sergdenisov",
+  "license": "ISC",
+  "homepage": "https://github.com/sergdenisov/skillbox-nodejs-test-task#readme",
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  }
+}
